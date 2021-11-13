@@ -1,0 +1,53 @@
+.menu {
+    &-wrapper {
+        margin: 24px 0;
+        .slick-prev:before,
+        .slick-next:before {
+            font-size: 25px;
+            color: #f63;
+            opacity: 1 !important;
+        }
+        .slick-list {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .menu-title {
+            margin: 0;
+            padding: 12px;
+            padding-left: 20px;
+            text-transform: uppercase;
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.54);
+            font-weight: 500;
+        }
+        .banner {
+            &-wrapper {
+                height: 180px;
+                display: flex !important;
+                flex-direction: column;
+                justify-content: center;
+                border-right: 1px solid rgba(0, 0, 0, 0.05);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+            &-wrapper-img {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 70%;
+                img {
+                    width: 90px !important;
+                    height: 90px;
+                }
+            }
+            &-wrapper-title {
+                height: 30%;
+
+                h5 {
+                    font-size: 15px;
+                    color: #333;
+                    margin: 0;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

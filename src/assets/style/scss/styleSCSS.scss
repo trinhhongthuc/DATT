@@ -1,4 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@200;300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Jost:wght@200;300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import "./base/base";
 @import "../../../../node_modules/bootstrap/scss/functions";
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 // Theme Variables
 @import "argon-design-system/variables";
@@ -11,4 +17,10 @@
 
 // React Differences
 @import "react/react-differences";
-@import "./react/navbarGetStarted/navbar";
+@import "./header/header";
+@import "./Slide/slide";
+@import "./menu/menu";
+@import "./boxProduct/boxProduct";
+@import "./home/home";
+@import "./FlashSale/flashSale";
+@import "./Banner/banner";
