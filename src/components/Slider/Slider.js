@@ -30,7 +30,7 @@ function SamplePrevArrow(props) {
 }
 
 const Slider = () => {
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     slidesToShow: 1,

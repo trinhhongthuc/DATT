@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import Container from "@mui/material/Container";
 import maytinh from "../../assets/Image/Menu/maytinh.png";
-
+import { Link } from "react-router-dom";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -65,14 +65,14 @@ const Menu = () => {
               {[1, 2, 3, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1].map(
                 (item, index) => {
                   return (
-                    <div className="banner-wrapper">
+                    <Link to="/product-menu" className="banner-wrapper">
                       <div className="banner-wrapper-img">
                         <img src={maytinh} alt="" />
                       </div>
                       <div className="banner-wrapper-title">
                         <h5>Máy tính & la asd adsaptop {index}</h5>
                       </div>
-                    </div>
+                    </Link>
                   );
                 }
               )}

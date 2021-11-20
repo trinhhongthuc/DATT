@@ -1,0 +1,13 @@
+.slide-full-width {
+    .slick-list {
+        width: 100%;
+        height: 100%;
+        .slick-track {
+            .slides-img {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

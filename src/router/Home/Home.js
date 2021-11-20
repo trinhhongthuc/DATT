@@ -17,7 +17,6 @@ const Home = () => {
         padding: " 0 0 24px 0",
       }}
     >
-      <Header />
       <Slider />
       <Menu />
       <Banner />
@@ -78,7 +77,7 @@ const Home = () => {
         <div className="row">
           <div className="col-xl-12">
             <div className="see-more">
-              <Link to="#">Xem thêm</Link>
+              <Link to="/show-all-product">Xem thêm</Link>
             </div>
           </div>
         </div>

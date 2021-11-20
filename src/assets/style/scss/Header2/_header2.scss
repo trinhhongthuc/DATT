@@ -1,0 +1,29 @@
+.header2 {
+    padding: 25px !important;
+    background-color: #fff;
+    position: relative;
+    &-wrapper {
+        .header2-logo {
+            height: 50px;
+            text-align: start;
+            text-decoration: none;
+            font-family: "Great Vibes" !important;
+            font-size: 30px;
+            font-weight: 700;
+            color: #f65;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .header2-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #f65;
+        font-size: 30px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+}

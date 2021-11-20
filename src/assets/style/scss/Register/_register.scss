@@ -1,0 +1,22 @@
+.register {
+    background: #ee4d2d;
+    .btn-login-google {
+        background-color: #f65;
+        color: #fff;
+        transition: all 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+
+    .btn-login-google:hover {
+        background-color: #f63;
+        color: #fff;
+        transition: all 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+
+    .text-muted.text-center {
+        small {
+            font-size: 20px;
+            color: #8898aa;
+            font-weight: 500;
+        }
+    }
+}

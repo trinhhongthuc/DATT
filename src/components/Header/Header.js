@@ -21,7 +21,7 @@ const Header = () => {
               <div className="header-top-left">
                 <ul>
                   <li>
-                    <Link to="#">Trở thành người bán của shoppe</Link>
+                    <Link to="/user">Trở thành người bán của shoppe</Link>
                   </li>
                   <li>
                     <p>Kết nối</p>
@@ -104,10 +104,10 @@ const Header = () => {
                   </li>
 
                   <li>
-                    <Link>Đăng ký</Link>
+                    <Link to="/register">Đăng ký</Link>
                   </li>
                   <li>
-                    <Link>Đăng nhập</Link>
+                    <Link to="/login">Đăng nhập</Link>
                   </li>
                 </ul>
               </div>
@@ -115,8 +115,8 @@ const Header = () => {
           </div>
           <div className="row">
             <div className="header-bottom">
-              <Link to="#" className="header-bottom-logo">
-                <img src={logo} alt="" />
+              <Link to="/" className="header-bottom-logo">
+                TMĐT
               </Link>
 
               <div className="header-bottom-wrapper">

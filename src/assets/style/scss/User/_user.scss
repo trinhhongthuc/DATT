@@ -1,0 +1,79 @@
+.user {
+    margin-left: 232px;
+    margin-top: 100px;
+    background-color: #f5f5f5;
+    &-wrapper-list-job {
+        border-radius: 2px;
+        background-color: #fff;
+        -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+        padding: 24px 24px 8px;
+        margin-bottom: 16px;
+        margin-top: 16px;
+    }
+    &-wrapper-list-job-title {
+        font-size: 18px;
+        color: #333;
+        font-weight: 500;
+        margin-bottom: 0;
+        padding-bottom: 12px;
+    }
+    &-wrapper-list-job-ul {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-bottom: 0;
+    }
+    &-wrapper-list-job-ul-li {
+        width: 20%;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 12px;
+        border-right: 1px solid #eee;
+        a {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            padding-top: 6px;
+            p.number {
+                margin-bottom: 7px;
+                font-size: 16px;
+                min-height: 18px;
+                color: #2673dd;
+                font-weight: 500;
+
+                display: block;
+            }
+
+            p {
+                font-size: 12px;
+                color: #333;
+                max-height: 42px;
+                overflow: hidden;
+                padding: 0 12px;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                position: relative;
+            }
+        }
+        a:hover {
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    }
+
+    &-wrapper-list-job-ul-li:last-child {
+        border: none;
+    }
+}

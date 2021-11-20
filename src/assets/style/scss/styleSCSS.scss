@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@200;300;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Jost:wght@200;300;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 @import "./base/base";
 @import "../../../../node_modules/bootstrap/scss/functions";
 @import "~slick-carousel/slick/slick.css";
@@ -24,3 +25,15 @@
 @import "./home/home";
 @import "./FlashSale/flashSale";
 @import "./Banner/banner";
+@import "./ShowAllProduct/showAllProduct";
+@import "./SlideFullWidth/slideFullWidth";
+@import "./ProductMenu/productMenu";
+
+@import "./DetailProduct/detailProduct";
+@import "./Login/login";
+@import "./Register/register";
+@import "./Header2/header2";
+@import "./Header3/header3";
+@import "./MenuLeft/menuLeft";
+@import "./User/user";
+@import "./User/Transport/transport";

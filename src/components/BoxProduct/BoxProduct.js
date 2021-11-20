@@ -6,8 +6,8 @@ import { ReactComponent as FreeShip } from "../../assets/Image/ship.svg";
 const BoxProduct = () => {
   const [value, setValue] = useState("");
   return (
-    <div className="col-xl-2 col-lg-2" style={{ padding: "0 5px" }}>
-      <Link to="#" className="box-product">
+    <div className="col-xs-2-4 col-lg-2" style={{ padding: "0 5px" }}>
+      <Link to="/product/1" className="box-product">
         <div className="box-product-sales">
           <p className="box-product-sales-number">40%</p>
           <p className="box-product-sales-text">Giảm</p>

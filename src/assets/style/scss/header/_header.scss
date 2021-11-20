@@ -245,11 +245,20 @@
         height: 50px;
         text-align: start;
         text-decoration: none;
+        font-family: "Great Vibes" !important;
+        font-size: 30px;
+        font-weight: 700;
+        color: #fff;
+        display: flex;
+        align-items: center;
 
         img {
             width: auto;
             height: 100%;
         }
+    }
+    &-bottom-logo:hover {
+        color: #fff;
     }
     &-bottom-wrapper {
         width: 70%;

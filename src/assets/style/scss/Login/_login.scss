@@ -1,0 +1,48 @@
+.login {
+    background-color: rgb(238, 77, 45);
+    padding: 50px 0;
+    .transform {
+        &-perspective-right {
+            transform: unset;
+        }
+    }
+
+    .btn-login-google {
+        background-color: #f65;
+        color: #fff;
+        transition: all 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+
+    .btn-login-google:hover {
+        background-color: #f63;
+        color: #fff;
+        transition: all 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+
+    .text-muted.text-center {
+        small {
+            font-size: 20px;
+            color: #8898aa;
+            font-weight: 500;
+        }
+    }
+    .information-title {
+        font-size: 50px;
+        color: #fff;
+        text-align: center;
+        font-family: "Great Vibes" !important;
+        margin: 0;
+    }
+    .information-login {
+        font-size: 50px;
+        color: #fff;
+        text-align: center;
+        font-family: "Great Vibes" !important;
+        margin: 0;
+    }
+    .text-light {
+        small {
+            // color: #fff;
+        }
+    }
+}

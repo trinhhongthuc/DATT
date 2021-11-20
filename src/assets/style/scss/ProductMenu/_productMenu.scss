@@ -1,0 +1,151 @@
+.product {
+    &-menu {
+        .product-menu-wrapper-items {
+            .col-xl-2,
+            .col-lg-2 {
+                max-width: 20%;
+                flex: 0 0 20%;
+            }
+        }
+
+        .product-menu-wrapper-filter {
+            padding-right: 8px;
+            &-title {
+                text-transform: uppercase;
+                color: rgba(0, 0, 0, 0.8);
+                height: 1.875rem;
+                font-weight: 700;
+                font-size: 1rem;
+                svg {
+                    margin-right: 12px;
+                }
+            }
+            &-button {
+                width: 100%;
+                button {
+                    width: 100%;
+                }
+                button:focus {
+                    outline: none;
+                }
+            }
+
+            ul {
+                margin-bottom: 12px;
+                h6 {
+                    text-transform: capitalize;
+                    margin-bottom: 0.625rem;
+                    font-weight: 500;
+                    font-size: 14px;
+                    color: rgba(0, 0, 0, 0.8);
+                    margin: 12px 0 6px 0;
+                }
+
+                li {
+                    margin: 6px 0;
+                    list-style: none;
+
+                    .custom-control.custom-checkbox {
+                        display: flex;
+
+                        .custom-control-label::before,
+                        .custom-control-label::after {
+                            width: 1rem;
+                            height: 1rem;
+                        }
+                    }
+                    .custom-control-label {
+                        font-size: 14px;
+                        color: rgba(0, 0, 0, 0.8);
+                    }
+                    .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+                        background-color: #f65;
+                        border-color: #f65;
+                    }
+                }
+            }
+        }
+    }
+    &-menu-top {
+        width: 100%;
+        font-weight: 400;
+        background: rgba(0, 0, 0, 0.03);
+        padding: 0.8125rem 1.25rem;
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 16px 0;
+    }
+    &-menu-top__label {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 15px;
+    }
+    &-menu-top__option {
+        display: flex;
+        align-items: stretch;
+        flex: 1;
+        justify-content: flex-start;
+        justify-content: space-between;
+        align-items: center;
+
+        &-wrapper-left {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        &-wrapper-right {
+            button:focus {
+                outline: none;
+            }
+        }
+    }
+
+    &-menu-top__option-price {
+        width: 180px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        margin: 0 12px;
+        select {
+            padding: 5px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: rgba(0, 0, 0, 0.8);
+            option {
+                font-size: 14px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                color: rgba(0, 0, 0, 0.8);
+            }
+        }
+    }
+    &-menu-top__option-price-input {
+        display: flex;
+        align-items: center;
+        span {
+            margin-right: 12px;
+            color: rgba(0, 0, 0, 0.8);
+            font-size: 15px;
+        }
+
+        p {
+            margin: 0 6px;
+            color: rgba(0, 0, 0, 0.8);
+            font-size: 15px;
+        }
+        input {
+            padding: 3px 12px;
+            width: 90px;
+            height: 40px;
+            font-size: 14px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: rgba(0, 0, 0, 0.8);
+        }
+    }
+}

@@ -1,0 +1,89 @@
+.menu-left {
+    position: fixed;
+    z-index: 1;
+    width: 230px;
+    top: 100px;
+    height: calc(100% - 100px);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background: #fff;
+    box-shadow: 4px 0 4px -4px rgba(74, 74, 78, 0.16);
+    padding: 12px 0 12px 10px;
+    overflow: auto;
+
+    .css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded {
+        margin: 0;
+    }
+
+    .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+        box-shadow: none;
+    }
+    .css-ahj2mt-MuiTypography-root {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        color: #777;
+        cursor: pointer;
+        padding: 5px 0;
+        font-size: 14px;
+        font-weight: bolder;
+        display: flex;
+        align-items: center;
+
+        svg {
+            font-size: 20px;
+            color: #999;
+            margin-right: 6px;
+        }
+        a {
+            color: #333;
+            cursor: pointer;
+            padding-left: 12px;
+            font-weight: 500;
+            font-size: 13px;
+        }
+    }
+
+    .css-15v22id-MuiAccordionDetails-root {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+    .css-o4b71y-MuiAccordionSummary-content.Mui-expanded {
+        margin: 6px 0;
+    }
+
+    .css-1elwnq4-MuiPaper-root-MuiAccordion-root:before {
+        background-color: transparent !important;
+    }
+
+    .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
+        min-height: 40px;
+    }
+}
+/* width */
+.menu-left::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.menu-left::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.menu-left::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+}
+
+/* Handle on hover */
+.menu-left::-webkit-scrollbar-thumb:hover {
+    background: #646464;
+}
