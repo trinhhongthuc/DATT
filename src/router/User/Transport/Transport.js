@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import moment from "moment";
 import NumberFormat from "react-number-format";
 import { Link } from "react-router-dom";
+import CartImg from "../../../assets/Image/cart.png";
 const DataMenuNav = [
   {
     title: "Tất cả",
@@ -76,16 +77,17 @@ const FakeDataTable = [
 
 const RenderTable = () => {
   return (
-    <table>
-      <thead>
-        {" "}
-        <th style={{ width: "40%" }}>Sản phẩm</th>
-        <th style={{ width: "13%" }}>Tổng đơn hàng</th>
-        <th style={{ width: "13%" }}>Trạng thái</th>
-        <th style={{ width: "34%" }}>Thao tác</th>
-      </thead>
-      <tbody>
-        {FakeDataTable.map((item, index) => {
+    <>
+      <table>
+        <thead>
+          {" "}
+          <th style={{ width: "40%" }}>Sản phẩm</th>
+          <th style={{ width: "13%" }}>Tổng đơn hàng</th>
+          <th style={{ width: "13%" }}>Trạng thái</th>
+          <th style={{ width: "34%" }}>Thao tác</th>
+        </thead>
+        <tbody>
+          {/* {FakeDataTable.map((item, index) => {
           return (
             <tr>
               <th scope="row">
@@ -120,9 +122,14 @@ const RenderTable = () => {
               </th>
             </tr>
           );
-        })}
-      </tbody>
-    </table>
+        })} */}
+        </tbody>
+      </table>
+      <div className="transport-product-empty">
+        <img src={CartImg} alt="" />
+        <h6>Không tìm thấy đơn hàng</h6>
+      </div>
+    </>
   );
 };
 

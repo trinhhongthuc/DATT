@@ -16,6 +16,8 @@ import Header3 from "./components/Header3/Header3";
 import Users from "./router/User/Index";
 import MenuLeft from "./router/User/MenuLeft";
 import Transport from "./router/User/Transport/Transport";
+import ManagerProduct from "./router/User/ManagerProduct/ManagerProduct";
+import CreateProduct from "./router/User/CreateProduct/CreateProduct";
 function App() {
   return (
     <Router>
@@ -53,6 +55,17 @@ function App() {
           <Header3 />
           <MenuLeft />
           <Transport />
+        </Route>
+
+        <Route exact path="/user/manage-product">
+          <Header3 />
+          <MenuLeft />
+          <ManagerProduct />
+        </Route>
+
+        <Route exact path="/user/manage-product/create-product">
+          <Header3 />
+          <CreateProduct />
         </Route>
       </Switch>
     </Router>

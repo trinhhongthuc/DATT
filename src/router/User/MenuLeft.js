@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import HomeIcon from "@mui/icons-material/Home";
+
 const MenuLeft = () => {
   return (
     <div className="menu-left">
@@ -19,12 +21,13 @@ const MenuLeft = () => {
         >
           <Typography>
             {" "}
-            <LocalShippingIcon /> Vận chuyển
+            <HomeIcon />
+            Trang chủ
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <Link to="/user/transport">Quản lý vận chuyển</Link>
+            <Link to="/user">Trang chủ</Link>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -42,10 +45,7 @@ const MenuLeft = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <Link>Tất cả</Link>
-          </Typography>
-          <Typography>
-            <Link>Tất Đơn hủy</Link>
+            <Link to="/user/transport">Quản lý đơn hàng</Link>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -63,10 +63,7 @@ const MenuLeft = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <Link>Tất Đơn sản phẩm</Link>
-          </Typography>
-          <Typography>
-            <Link>Thêm sản phẩm</Link>
+            <Link to="/user/manage-product">Quản lý sản phẩm</Link>
           </Typography>
         </AccordionDetails>
       </Accordion>
