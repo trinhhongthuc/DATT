@@ -1,8 +1,9 @@
-import React from "react";
-import Slider from "react-slick";
 import Container from "@mui/material/Container";
-import maytinh from "../../assets/Image/Menu/maytinh.png";
+import React from "react";
 import { Link } from "react-router-dom";
+import Slider from "react-slick";
+import maytinh from "../../assets/Image/Menu/maytinh.png";
+import { AppContext } from "./../../Context/AppProvider";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -36,12 +37,14 @@ function SamplePrevArrow(props) {
 }
 
 const Menu = () => {
+  const { menu } = React.useContext(AppContext);
+
   const settings = {
     className: "center",
     // centerMode: true,
     infinite: true,
     centerPadding: "60px",
-    slidesToShow: 7,
+    slidesToShow: 6,
     speed: 500,
     rows: 2,
     slidesPerRow: 1,
@@ -61,22 +64,26 @@ const Menu = () => {
           </div>
 
           <div className="row">
-            <Slider {...settings} style={{ width: "100%", background: "#fff" }}>
-              {[1, 2, 3, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1].map(
-                (item, index) => {
-                  return (
-                    <Link to="/product-menu" className="banner-wrapper">
-                      <div className="banner-wrapper-img">
-                        <img src={maytinh} alt="" />
-                      </div>
-                      <div className="banner-wrapper-title">
-                        <h5>Máy tính & la asd adsaptop {index}</h5>
-                      </div>
-                    </Link>
-                  );
-                }
-              )}
-            </Slider>
+            {menu?.length > 0 && (
+              <Slider
+                {...settings}
+                style={{ width: "100%", background: "#fff" }}
+              >
+                {menu?.length > 0 &&
+                  menu.map((item, index) => {
+                    return (
+                      <Link to="/product-menu" className="banner-wrapper">
+                        <div className="banner-wrapper-img">
+                          <img src={maytinh} alt="" />
+                        </div>
+                        <div className="banner-wrapper-title">
+                          <h5>{item.nameMenu}</h5>
+                        </div>
+                      </Link>
+                    );
+                  })}
+              </Slider>
+            )}
           </div>
         </div>
       </Container>

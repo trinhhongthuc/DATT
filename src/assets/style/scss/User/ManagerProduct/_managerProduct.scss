@@ -1,9 +1,10 @@
 .manager {
     &-product {
         margin-left: 232px;
-        margin-top: 100px;
-        padding: 24px 0;
-        background-color: #f5f5f5;
+        padding-top: 85px;
+        padding-bottom: 24px;
+        background-color: #eee;
+        min-height: 100vh;
     }
     &-product-wrapper {
         background: #fff;
@@ -172,6 +173,13 @@
 
                 tbody {
                     tr {
+                        .wrapper-button-action {
+                            display: flex;
+
+                            a {
+                                display: inline;
+                            }
+                        }
                         th {
                             text-align: center;
                             font-size: 14px;

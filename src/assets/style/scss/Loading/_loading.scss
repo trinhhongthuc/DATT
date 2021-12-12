@@ -1,0 +1,23 @@
+.loading {
+    background-color: rgba(255, 255, 255, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    color: #f65;
+
+    svg {
+        stroke: #f65;
+        fill: #f65;
+        position: relative;
+        z-index: 1200;
+        path {
+            fill: #f65;
+        }
+    }
+}

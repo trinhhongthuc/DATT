@@ -1,9 +1,13 @@
-import React from "react";
-import Container from "@mui/material/Container";
-import { Input, InputGroupAddon, InputGroupText, InputGroup } from "reactstrap";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import SearchIcon from "@mui/icons-material/Search";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-const ChooseMenu = () => {
+import Container from "@mui/material/Container";
+import React from "react";
+import { Input, InputGroup, InputGroupAddon, InputGroupText } from "reactstrap";
+import { UserContext } from "./../../../../Context/UserProvider";
+const ChooseMenu = ({ setChooseMenu, chooseMenu }) => {
+  const { menu } = React.useContext(UserContext);
+
+  const [menuid, setmenuid] = React.useState("");
   return (
     <div className="choose-menu">
       <Container>
@@ -17,7 +21,17 @@ const ChooseMenu = () => {
 
               <div className="choose-menu-wrapper-name-product">
                 <span>Tên sản phẩm:</span>
-                <Input placeholder="Tên sản phẩm" type="text" />
+                <Input
+                  placeholder="Tên sản phẩm"
+                  type="text"
+                  value={chooseMenu.nameProduct}
+                  onChange={(e) => {
+                    setChooseMenu({
+                      ...chooseMenu,
+                      nameProduct: e.target.value,
+                    });
+                  }}
+                />
               </div>
 
               <div className="choose-menu-wrapper-content">
@@ -42,73 +56,29 @@ const ChooseMenu = () => {
 
                 <div className="menu-choose">
                   <ul>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                  </ul>
-                  <ul>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                    <li>
-                      Máy tính & laptop <KeyboardArrowRightIcon />
-                    </li>
-                  </ul>
-                  <ul>
-                    <li>Máy tính & laptop</li>
-                    <li>Máy tính & laptop</li>
-                    <li>Máy tính & laptop</li>
-                    <li>Máy tính & laptop</li>
-                    <li>Máy tính & laptop</li>
-                    <li>Máy tính & laptop</li>
-                    <li>Máy tính & laptop</li>
-                    <li>Máy tính & laptop</li>
-                    <li>Máy tính & laptop</li>
+                    {menu?.length > 0
+                      ? menu.map((item) => {
+                          return (
+                            <li
+                              key={item.menuId}
+                              className={
+                                chooseMenu.idMenu == item.menuId
+                                  ? "active-menu"
+                                  : ""
+                              }
+                              onClick={(e) => {
+                                setChooseMenu({
+                                  ...chooseMenu,
+                                  idMenu: item.menuId,
+                                });
+                              }}
+                            >
+                              <ArrowForwardIosIcon />
+                              {item.nameMenu}{" "}
+                            </li>
+                          );
+                        })
+                      : ""}
                   </ul>
                 </div>
               </div>

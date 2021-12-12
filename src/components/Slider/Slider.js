@@ -1,11 +1,7 @@
+import Container from "@mui/material/Container";
 import React from "react";
 import Slide from "react-slick";
-import slide1 from "../../assets/Image/slide/slide1.png";
-import slide2 from "../../assets/Image/slide/slide2.png";
-import slide3 from "../../assets/Image/slide/slide3.png";
-import slide4 from "../../assets/Image/slide/slide4.png";
-import slide5 from "../../assets/Image/slide/slide5.png";
-import Container from "@mui/material/Container";
+import { AppContext } from "./../../Context/AppProvider";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -30,6 +26,8 @@ function SamplePrevArrow(props) {
 }
 
 const Slider = () => {
+  const { slide } = React.useContext(AppContext);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -42,6 +40,7 @@ const Slider = () => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
+
   return (
     <>
       <div className="slider">
@@ -49,21 +48,21 @@ const Slider = () => {
           <div className="row">
             <div className="slide-left">
               <Slide {...settings} style={{ height: "270px" }}>
-                <div className="slides-img">
-                  <img src={slide1} alt="" />
-                </div>
-                <div className="slides-img">
-                  <img src={slide2} alt="" />
-                </div>
-                <div className="slides-img">
-                  <img src={slide3} alt="" />
-                </div>
-                <div className="slides-img">
-                  <img src={slide4} alt="" />
-                </div>
-                <div className="slides-img">
-                  <img src={slide5} alt="" />
-                </div>
+                {slide?.length > 2
+                  ? slide.slice(2).map((item, i) => {
+                      return (
+                        <div className="slides-img" key={item.id}>
+                          <img src={item.image} alt="" />
+                        </div>
+                      );
+                    })
+                  : slide.map((item, i) => {
+                      return (
+                        <div className="slides-img" key={item.id}>
+                          <img src={item.image} alt="" />
+                        </div>
+                      );
+                    })}
               </Slide>
             </div>
             <div className="slide-right">
@@ -73,14 +72,14 @@ const Slider = () => {
               >
                 <div className="slide-banner-top">
                   <img
-                    src={slide1}
+                    src={slide?.length >= 2 ? slide[0].image : ""}
                     alt=""
                     style={{ width: "100%", height: "100%" }}
                   />
                 </div>
                 <div className="slide-banner-bottom">
                   <img
-                    src={slide2}
+                    src={slide?.length >= 2 ? slide[1].image : ""}
                     alt=""
                     style={{ width: "100%", height: "100%" }}
                   />

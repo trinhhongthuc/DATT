@@ -1,8 +1,10 @@
+import LogoutIcon from "@mui/icons-material/Logout";
 import React from "react";
 import { Link } from "react-router-dom";
-import avatart from "../../assets/Image/avatar.png";
-import LogoutIcon from "@mui/icons-material/Logout";
+import { UserContext } from "./../../Context/UserProvider";
+import firebase from "./../../firebase/config";
 const Header3 = () => {
+  const { user } = React.useContext(UserContext);
   return (
     <div className="header3">
       <Link to="/" className="header3-link">
@@ -11,12 +13,16 @@ const Header3 = () => {
 
       <div className="header3-login">
         <div className="header3-login-avatar">
-          <img src={avatart} alt="" />
+          <img src={user.photoURL} alt="" />
         </div>
-        <h6 className="header3-login-name">thuc 5799</h6>
+        <h6 className="header3-login-name">{user.displayName}</h6>
 
         <ul>
-          <li>
+          <li
+            onClick={() => {
+              firebase.auth().signOut();
+            }}
+          >
             <LogoutIcon /> <span>Đăng xuất</span>
           </li>
         </ul>

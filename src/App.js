@@ -1,73 +1,107 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { UncontrolledAlert } from "reactstrap";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import MenuSidebar from "router/User/MenuSidebar/MenuSilebar";
 import Header from "./components/Header/Header";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Slider from "./components/Slider/Slider";
-import Menu from "./components/Menu/Menu";
-import Home from "./router/Home/Home";
-import ShowAllProduct from "./router/ShowAllProduct/ShowAllProduct";
-import ProductMenu from "./router/ProductMenu/ProductMenu";
-import DetailProduct from "./router/DetailProduct/DetailProduct";
-import Login from "./router/Login/Login";
-import Register from "./router/Register/Register";
 import Header2 from "./components/Header2/Header2";
-import Header3 from "./components/Header3/Header3";
-import Users from "./router/User/Index";
-import MenuLeft from "./router/User/MenuLeft";
-import Transport from "./router/User/Transport/Transport";
-import ManagerProduct from "./router/User/ManagerProduct/ManagerProduct";
+import AppProvider from "./Context/AppProvider";
+import AuthProvider from "./Context/AuthProvider";
+import UserProvider from "./Context/UserProvider";
+import DetailProduct from "./router/DetailProduct/DetailProduct";
+import Home from "./router/Home/Home";
+import Profile from "./router/Home/User/Account/Profile";
+import Login from "./router/Login/Login";
+import LoginUser from "./router/LoginUser/LoginUser";
+import ProductMenu from "./router/ProductMenu/ProductMenu";
+import Register from "./router/Register/Register";
+import RegisterShop from "./router/RegisterShop/RegisterShop";
+import Shop from "./router/Shop/Shop";
+import ShowAllProduct from "./router/ShowAllProduct/ShowAllProduct";
 import CreateProduct from "./router/User/CreateProduct/CreateProduct";
+import Users from "./router/User/Index";
+import ManagerProduct from "./router/User/ManagerProduct/ManagerProduct";
+import SettingShop from "./router/User/SettingShop/SettingShop";
+import Transport from "./router/User/Transport/Transport";
+import UpdateProduct from "./router/User/UpdateProduct/UpdateProduct";
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
-          <Header />
-          <Home />
-        </Route>
-        <Route exact path="/show-all-product">
-          <Header />
-          <ShowAllProduct />
-        </Route>
-        <Route exact path="/product-menu">
-          <Header />
-          <ProductMenu />
-        </Route>
-        <Route exact path="/product/:id">
-          <Header />
-          <DetailProduct />
-        </Route>
-        <Route exact path="/login">
-          <Header2 title="Đăng nhập" />
-          <Login />
-        </Route>
-        <Route exact path="/register">
-          <Header2 title="Đăng ký" />
-          <Register />
-        </Route>
-        <Route exact path="/user">
-          <Header3 />
-          <MenuLeft />
-          <Users />
-        </Route>
-        <Route exact path="/user/transport">
-          <Header3 />
-          <MenuLeft />
-          <Transport />
-        </Route>
+      <AuthProvider>
+        <AppProvider>
+          <Switch>
+            <Route exact path="/">
+              <Header />
+              <Home />
+            </Route>
+            <Route exact path="/show-all-product">
+              <Header />
+              <ShowAllProduct />
+            </Route>
+            <Route exact path="/product-menu">
+              <Header />
+              <ProductMenu />
+            </Route>
+            <Route exact path="/product/:id">
+              <Header />
+              <DetailProduct />
+            </Route>
+            <Route exact path="/login">
+              <Header2 title="Đăng nhập" />
+              <Login />
+            </Route>
+            <Route exact path="/register">
+              <Header2 title="Đăng ký" />
+              <Register />
+            </Route>
+          </Switch>
+        </AppProvider>
+      </AuthProvider>
+      <UserProvider>
+        <Switch>
+          <Route exact path="/login-user">
+            <LoginUser />
+          </Route>
+          <Route exact path="/register-user">
+            <RegisterShop />
+          </Route>
+          <Route exact path="/user/dashboard">
+            <MenuSidebar />
+            <Users />
+          </Route>
+          <Route exact path="/user/transport">
+            <MenuSidebar />
+            <Transport />
+          </Route>
 
-        <Route exact path="/user/manage-product">
-          <Header3 />
-          <MenuLeft />
-          <ManagerProduct />
-        </Route>
+          <Route exact path="/user/manage-product">
+            <MenuSidebar />
+            <ManagerProduct />
+          </Route>
 
-        <Route exact path="/user/manage-product/create-product">
-          <Header3 />
-          <CreateProduct />
-        </Route>
-      </Switch>
+          <Route exact path="/user/manage-product/create-product">
+            <MenuSidebar />
+            <CreateProduct />
+          </Route>
+
+          <Route exact path="/user/manage-product/update-product/:id">
+            <MenuSidebar />
+            <UpdateProduct />
+          </Route>
+
+          <Route exact path="/user/setting-shop">
+            <MenuSidebar />
+            <SettingShop />
+          </Route>
+
+          {/* shop */}
+          <Route exact path="/shop">
+            <Header />
+            <Shop />
+          </Route>
+
+          <Route exact path="/account/profile">
+            <Profile />
+          </Route>
+        </Switch>
+      </UserProvider>
     </Router>
   );
 }

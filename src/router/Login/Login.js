@@ -1,8 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// nodejs library that concatenates classes
-import classnames from "classnames";
-
+import { Link, useHistory } from "react-router-dom";
 // reactstrap components
 import {
   Button,
@@ -19,12 +16,87 @@ import {
   Row,
   Col,
 } from "reactstrap";
+
+import { addDocument, generateKeywords } from "../../firebase/services";
+// icon
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import GoogleIcon from "@mui/icons-material/Google";
+import { auth } from "../../firebase/config";
+import firebase from "../../firebase/config";
+import FacebookIcon from "@mui/icons-material/Facebook";
+
+import Loading from "../../components/Loading/Loading";
+import { AuthContext } from "../../Context/AuthProvider";
+import { ReactComponent as LoadingThreeDot } from "../../assets/Image/three-dots.svg";
+
+const fbProvider = new firebase.auth.FacebookAuthProvider();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+
 const Login = () => {
+  const history = useHistory();
+  // state
+  const [valueRegister, setValueRegister] = React.useState({
+    userName: "",
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = React.useState(false);
+  const [errEmail, setErrEmail] = React.useState(true);
+  const [errPassword, setErrPassword] = React.useState(true);
+  const [messageErrEmail, setMessageErrEmail] = React.useState(
+    "Vui lòng nhập email hợp lệ"
+  );
+  const [messageErrPass, setMessageErrPass] = React.useState("");
+  // context
+  const { setUser } = React.useContext(AuthContext);
+  // func
+  const handleLogin = async (provider) => {
+    const { additionalUserInfo, user } = await auth.signInWithPopup(provider);
+
+    if (additionalUserInfo?.isNewUser) {
+      addDocument("users", {
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        uid: user.uid,
+        providerId: additionalUserInfo.providerId,
+        keywords: generateKeywords(user.displayName?.toLowerCase()),
+        phone: "",
+        dayOfBirth: "10/10/1980",
+        gender: 0,
+        address: "",
+      });
+    }
+  };
+
+  const handleLoginEmailAndPassword = async () => {
+    setLoading(true);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(valueRegister.email, valueRegister.password)
+      .then((res) => {
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        if (err.code == "auth/invalid-email") {
+          setMessageErrEmail(err.message);
+          setErrEmail(false);
+        } else if (err.code == "auth/user-not-found") {
+          setMessageErrEmail(err.message);
+          setErrEmail(false);
+        } else if (err.code == "auth/wrong-password") {
+          setMessageErrPass(err.message);
+          setErrPassword(false);
+        }
+        setLoading(false);
+      });
+  };
+
   return (
     <div className="login">
+      {loading ? <Loading Icon={LoadingThreeDot} width={"60px"} /> : ""}
       <Container className="py-md">
         <Row className="row-grid justify-content-between align-items-center">
           <Col lg={7}>
@@ -40,22 +112,22 @@ const Login = () => {
                     <small>Đăng Nhập</small>
                   </div>
                   <div className="btn-wrapper text-center">
-                    {/* <Button
+                    <Button
                       className="btn-neutral btn-icon"
                       color="default"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={(e) => handleLogin(fbProvider)}
                     >
                       <span className="btn-inner--icon mr-1">
-                        <GoogleIcon />
+                        <FacebookIcon />
                       </span>
-                      <span className="btn-inner--text">Github</span>
-                    </Button> */}
+                      <span className="btn-inner--text">FaceBook</span>
+                    </Button>
                     <Button
                       className="btn-neutral btn-icon btn-login-google"
                       color="default"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={(e) => handleLogin(googleProvider)}
                     >
                       <span className="btn-inner--icon mr-1">
                         <GoogleIcon />
@@ -68,12 +140,11 @@ const Login = () => {
                   <div className="text-center text-muted mb-4">
                     <small>Hoặc</small>
                   </div>
-                  <Form role="form">
-                    <FormGroup
-                    //   className={classnames("mb-3", {
-                    //     focused: this.state.emailFocused,
-                    //   })}
-                    >
+                  <Form
+                    role="form"
+                    onSubmit={() => handleLoginEmailAndPassword()}
+                  >
+                    <FormGroup>
                       <InputGroup className="input-group-alternative">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
@@ -83,16 +154,31 @@ const Login = () => {
                         <Input
                           placeholder="Email"
                           type="email"
-                          //   onFocus={(e) => this.setState({ emailFocused: true })}
-                          //   onBlur={(e) => this.setState({ emailFocused: false })}
+                          onChange={(e) =>
+                            setValueRegister((pre) => {
+                              return {
+                                ...pre,
+                                email: e.target.value,
+                              };
+                            })
+                          }
                         />
                       </InputGroup>
+                      {!errEmail ? (
+                        <p
+                          style={{
+                            color: "red",
+                            fontSize: "14px",
+                            margin: "0",
+                          }}
+                        >
+                          {messageErrEmail}
+                        </p>
+                      ) : (
+                        ""
+                      )}
                     </FormGroup>
-                    <FormGroup
-                    //   className={classnames({
-                    //     focused: this.state.passwordFocused,
-                    //   })}
-                    >
+                    <FormGroup>
                       <InputGroup className="input-group-alternative">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
@@ -103,14 +189,29 @@ const Login = () => {
                           placeholder="Password"
                           type="password"
                           autoComplete="off"
-                          //   onFocus={(e) =>
-                          //     this.setState({ passwordFocused: true })
-                          //   }
-                          //   onBlur={(e) =>
-                          //     this.setState({ passwordFocused: false })
-                          //   }
+                          onChange={(e) =>
+                            setValueRegister((pre) => {
+                              return {
+                                ...pre,
+                                password: e.target.value,
+                              };
+                            })
+                          }
                         />
                       </InputGroup>
+                      {!errPassword ? (
+                        <p
+                          style={{
+                            color: "red",
+                            fontSize: "14px",
+                            margin: "0",
+                          }}
+                        >
+                          {messageErrPass}
+                        </p>
+                      ) : (
+                        ""
+                      )}
                     </FormGroup>
                     <div className="custom-control custom-control-alternative custom-checkbox">
                       <input
@@ -125,9 +226,12 @@ const Login = () => {
                         <span>Remember me</span>
                       </label>
                     </div>
-                    <div className="text-center">
+                    <div
+                      className="text-center"
+                      onClick={() => handleLoginEmailAndPassword()}
+                    >
                       <Button className="my-4" color="warning" type="button">
-                        Sign in
+                        Login
                       </Button>
                     </div>
                   </Form>

@@ -1,0 +1,14 @@
+.submit {
+    &-create {
+        &-wrapper {
+            padding: 35px 40px 48px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            button:focus {
+                outline: none;
+            }
+        }
+    }
+}

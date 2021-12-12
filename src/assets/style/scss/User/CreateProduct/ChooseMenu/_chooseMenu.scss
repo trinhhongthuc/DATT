@@ -91,11 +91,10 @@
                 display: flex;
 
                 ul {
-                    width: 33.333%;
+                    width: 100%;
                     list-style: none;
                     margin: 0;
                     padding: 0 12px;
-                    border-right: 1px solid #ededed;
 
                     li {
                         color: rgba(0, 0, 0, 0.8);
@@ -103,15 +102,25 @@
                         font-size: 14px;
                         display: flex;
                         align-items: center;
-                        justify-content: space-between;
+                        justify-content: flex-start;
                         padding: 6px 8px;
                         cursor: pointer;
+
+                        svg {
+                            font-size: 12px;
+                            margin-right: 5px;
+                        }
                     }
 
                     li:hover {
                         background-color: #ededed;
                         color: #f65;
                         transition: all 0.3s ease-in-out;
+                    }
+
+                    li.active-menu {
+                        background-color: #ededed;
+                        color: #f65;
                     }
                 }
             }

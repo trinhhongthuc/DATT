@@ -1,0 +1,82 @@
+.detail {
+    &-product {
+    }
+    &-product-wrapper {
+        padding: 35px 40px 48px;
+        background: #fff;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+        .heading {
+            margin-bottom: 6px;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 6px;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+        }
+        .content {
+            list-style: none;
+            margin: 0;
+            align-items: center;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            li {
+                align-items: center;
+                display: flex;
+                width: 70%;
+                margin: 12px 12px 12px 0;
+
+                > label {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: rgba(0, 0, 0, 0.8);
+                    margin: 0;
+                    margin-right: 12px;
+                    width: 20%;
+                }
+                select {
+                    width: 50%;
+                    border: 1px solid #ededed;
+                    border-radius: 3px;
+                    padding: 6px 12px;
+                }
+
+                .css-q8hpuo-MuiFormControl-root {
+                    width: 60%;
+                    > label {
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: rgba(0, 0, 0, 0.8);
+                        margin: 0;
+                        margin-right: 12px;
+                        transform: translate(9px, 12px);
+                        margin-left: 12px;
+                    }
+
+                    .MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-shrink.MuiInputLabel-outlined.MuiFormLabel-root.MuiFormLabel-colorPrimary.MuiFormLabel-filled.css-1kty9di-MuiFormLabel-root-MuiInputLabel-root {
+                        transform: translate(14px, -9px) scale(0.75);
+                    }
+                }
+
+                .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+                    padding: 11.5px 10px;
+                    font-size: 14px;
+                    color: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    align-items: center;
+                }
+
+                .css-6hp17o-MuiList-root-MuiMenu-list {
+                    .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+                        font-size: 14px;
+                        color: rgba(0, 0, 0, 0.8);
+                    }
+                }
+            }
+        }
+    }
+}

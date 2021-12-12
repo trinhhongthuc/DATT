@@ -9,7 +9,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import HomeIcon from "@mui/icons-material/Home";
-
+import SettingsIcon from "@mui/icons-material/Settings";
 const MenuLeft = () => {
   return (
     <div className="menu-left">
@@ -64,6 +64,25 @@ const MenuLeft = () => {
         <AccordionDetails>
           <Typography>
             <Link to="/user/manage-product">Quản lý sản phẩm</Link>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography>
+            {" "}
+            <SettingsIcon />
+            Thiết lập shop
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <Link to="/user/setting-shop">Thiết lập shop</Link>
           </Typography>
         </AccordionDetails>
       </Accordion>

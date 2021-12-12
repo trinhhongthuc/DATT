@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
-import Container from "@mui/material/Container";
-import { Input, InputGroupAddon, InputGroupText, InputGroup } from "reactstrap";
-import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import SearchIcon from "@mui/icons-material/Search";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import { db } from "firebase/config";
+import React, { useEffect, useState } from "react";
 import ReactDatetime from "react-datetime";
+import NumberFormat from "react-number-format";
 import { Link } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
+import { Input, InputGroup, InputGroupAddon, InputGroupText } from "reactstrap";
 import CartImg from "../../../assets/Image/cart.png";
 import ProductImg from "../../../assets/Image/product/prd1.jfif";
-import NumberFormat from "react-number-format";
+import { UserContext } from "./../../../Context/UserProvider";
+import { listStatus } from "./../../../utils/contant/Contants";
 const DataMenuNav = [
   {
     title: "Tất cả",
@@ -40,7 +43,10 @@ const FakeDataTable = [
     status: "active",
   },
 ];
-const RenderTable = (checkedAll) => {
+
+const RenderTable = (checkedAll, products, menu) => {
+  //get product
+
   return (
     <>
       <table>
@@ -56,75 +62,100 @@ const RenderTable = (checkedAll) => {
           <th style={{ width: "17%" }}>Sửa thông tin</th>
         </thead>
         <tbody>
-          {FakeDataTable.map((item, index) => {
-            return (
-              <tr>
-                <th scope="row">
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      className="custom-control-input"
-                      id={`customCheck1${index}`}
-                      type="checkbox"
-                      checked={checkedAll ? true : ""}
-                      disabled={checkedAll ? false : true}
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor={`customCheck1${index}`}
-                    ></label>
-                  </div>
-                </th>
-                <th scope="row">
-                  <Link to="#">
-                    <img src={item.img} alt="" />
-                    {item.title.length > 60
-                      ? item.title.slice(0, 60) + "..."
-                      : item.title}
-                  </Link>
-                </th>
-                <th scope="row">{item.status}</th>
-                <th scope="row">{item.type}</th>
-                <th scope="row">
-                  <NumberFormat
-                    value={item.price}
-                    className="foo"
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    suffix={"đ"}
-                    renderText={(value, props) => <div {...props}>{value}</div>}
-                  />
-                </th>
-                <th scope="row">{item.store}</th>
-                <th scope="row">{item.productBuy}</th>
-                <th scope="row">
-                  <Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: "rgb(238, 77, 45)",
-                      outLine: "none",
-                    }}
-                    className="mr-2"
-                  >
-                    Sửa
-                  </Button>
+          {products?.length > 0 &&
+            products.map((item, index) => {
+              const type = menu.find(
+                (itemMenu) => itemMenu.menuId == item.idMenu
+              );
+              const status = listStatus.find(
+                (itemStatus) => itemStatus.type == item.status
+              );
 
-                  <Button
-                    variant="contained"
-                    color="error"
-                    disabled={checkedAll ? true : false}
-                  >
-                    Xóa
-                  </Button>
-                </th>
-              </tr>
-            );
-          })}
+              return (
+                <tr key={item.id}>
+                  <th scope="row">
+                    <div className="custom-control custom-checkbox">
+                      <input
+                        className="custom-control-input"
+                        id={`customCheck1${index}`}
+                        type="checkbox"
+                        checked={checkedAll ? true : ""}
+                        disabled={checkedAll ? false : true}
+                      />
+                      <label
+                        className="custom-control-label"
+                        htmlFor={`customCheck1${index}`}
+                      ></label>
+                    </div>
+                  </th>
+                  <th scope="row">
+                    <Link to={`/user/manage-product/update-product/${item.id}`}>
+                      <img
+                        src={item.avatarProduct}
+                        alt=""
+                        style={{ paddingRight: "6px" }}
+                      />
+                      <span>
+                        {item?.nameProduct.length > 60
+                          ? item.nameProduct.slice(0, 60) + "..."
+                          : item.nameProduct}
+                      </span>
+                    </Link>
+                  </th>
+                  <th scope="row">{status.status}</th>
+                  <th scope="row">{type.nameMenu}</th>
+                  <th scope="row">
+                    <NumberFormat
+                      value={item.infoBuyProduct.price}
+                      className="foo"
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      suffix={"đ"}
+                      renderText={(value, props) => (
+                        <div {...props}>{value}</div>
+                      )}
+                    />
+                  </th>
+                  <th scope="row">
+                    {item.infoBuyProduct.countProduct - item.productBuy}
+                  </th>
+                  <th scope="row">{item.productBuy}</th>
+                  <th scope="row" className="wrapper-button-action">
+                    <Link to={`/user/manage-product/update-product/${item.id}`}>
+                      <Button
+                        variant="contained"
+                        style={{
+                          backgroundColor: "rgb(238, 77, 45)",
+                          outLine: "none",
+                        }}
+                        className="mr-2"
+                      >
+                        Sửa
+                      </Button>
+                    </Link>
+
+                    <Button
+                      variant="contained"
+                      color="error"
+                      disabled={checkedAll ? true : false}
+                    >
+                      Xóa
+                    </Button>
+                  </th>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
-      {/* <div className="manager-product-empty">
-        <img src={CartImg} alt="" />
-        <h6>Không tìm thấy sản phẩm nào</h6>
-      </div> */}
+
+      {products?.length === 0 ? (
+        <div className="manager-product-empty">
+          <img src={CartImg} alt="" />
+          <h6>Không tìm thấy sản phẩm nào</h6>
+        </div>
+      ) : (
+        ""
+      )}
     </>
   );
 };
@@ -132,6 +163,9 @@ const RenderTable = (checkedAll) => {
 const ManagerProduct = () => {
   const [activeClass, setActiveClass] = useState("tat-ca");
   const [checkedAll, setCheckedAll] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  const { menu } = React.useContext(UserContext);
 
   useEffect(() => {
     switch (activeClass) {
@@ -149,6 +183,25 @@ const ManagerProduct = () => {
         break;
     }
   }, [activeClass]);
+
+  // get product
+  const { user } = React.useContext(UserContext);
+
+  React.useEffect(() => {
+    if (user.uid) {
+      db.collection("Products")
+        .where("idShop", "==", user.uid)
+        .limit(20)
+        .get()
+        .then((snapshot) => {
+          const data = snapshot.docs.map((doc) => ({
+            ...doc.data(),
+          }));
+          setProducts(data);
+        });
+    }
+  }, [user]);
+
   return (
     <div className="manager-product">
       <Container>
@@ -246,7 +299,9 @@ const ManagerProduct = () => {
             </Button>
           </div>
 
-          <div className="manager-product-table">{RenderTable(checkedAll)}</div>
+          <div className="manager-product-table">
+            {RenderTable(checkedAll, products, menu)}
+          </div>
 
           <div className="manager-product-action">
             <div className="manager-product-action-left">

@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
-import MenuLeft from "./MenuLeft";
 import Container from "@mui/material/Container";
-import Header3 from "./../../components/Header3/Header3";
-import { Link } from "react-router-dom";
-
 //test biểu đồ
 import axios from "axios";
-import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import LineChart from "./LineChart/index";
 
 const getReportByCountry = () =>
@@ -21,7 +17,6 @@ const Index = () => {
 
   useEffect(() => {
     getReportByCountry().then((res) => {
-      console.log(res);
       res.data.pop();
       setReport(res.data);
     });

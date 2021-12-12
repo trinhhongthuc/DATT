@@ -1,0 +1,104 @@
+.choose {
+    &-image-product {
+    }
+    &-image-product-wrapper {
+        padding: 35px 40px 48px;
+        background: #fff;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+        margin-top: 24px;
+        .heading {
+            margin-bottom: 6px;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 6px;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+        }
+        .image {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding-top: 24px;
+            &-title {
+                font-weight: 400;
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.8);
+                width: 15%;
+            }
+            &-wrapper {
+                width: 85%;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                margin: 0;
+                list-style: none;
+                li {
+                    width: 130px;
+                    height: 145px;
+                    text-align: center;
+                    margin-right: 12px;
+                    img {
+                        width: 130px;
+                        height: 130px;
+                    }
+                }
+
+                li:last-child {
+                    margin-right: 0;
+                }
+
+                input {
+                    display: none;
+                }
+
+                h6 {
+                    color: rgba(0, 0, 0, 0.8);
+                    font-size: 14px;
+                    margin: 0;
+                }
+            }
+            &-wrapper-custom {
+                position: relative;
+                height: 90%;
+                width: 100%;
+                border: 1px dashed #1791f2;
+                color: #1791f2;
+                margin: 0;
+                cursor: pointer;
+
+                svg {
+                    color: #1791f2;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 30px;
+                }
+            }
+        }
+
+        .description {
+            display: flex;
+            width: 100%;
+            padding-top: 30px;
+            &-title {
+                font-weight: 400;
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.8);
+                width: 15%;
+            }
+
+            textarea {
+                width: 85%;
+                height: 250px;
+                border-color: #b7b7b7;
+                border-radius: 5px;
+                resize: none;
+                padding: 6px 12px;
+            }
+        }
+    }
+}
