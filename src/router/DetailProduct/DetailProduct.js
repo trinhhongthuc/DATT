@@ -382,10 +382,13 @@ const DetailProduct = () => {
                       <ChatBubbleIcon />
                       Chát ngay
                     </div>
-                    <div className="description-shop">
+                    <Link
+                      to={`/shop/${!!shop && shop.uid}`}
+                      className="description-shop"
+                    >
                       <StoreMallDirectoryIcon />
                       Xem shop
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>

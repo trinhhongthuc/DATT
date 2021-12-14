@@ -7,9 +7,11 @@ const BoxProduct = ({ product }) => {
   return (
     <div className="col-xs-2-4 col-lg-2" style={{ padding: "0 5px" }}>
       <Link to={`/product/${product.id}`} className="box-product">
-        {product.sale > 0 && (
+        {product.infoBuyProduct.sale > 0 && (
           <div className="box-product-sales">
-            <p className="box-product-sales-number">{product.sale}</p>
+            <p className="box-product-sales-number">
+              {product.infoBuyProduct.sale}%
+            </p>
             <p className="box-product-sales-text">Giảm</p>
           </div>
         )}

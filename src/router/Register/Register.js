@@ -107,6 +107,7 @@ const Register = () => {
               gender: 0,
               address: "",
               role: 0,
+              notification: [],
             });
             history.push("/");
           }

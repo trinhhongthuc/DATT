@@ -51,25 +51,48 @@ const LoginUser = () => {
     const unSubscibed = auth.onAuthStateChanged((user) => {
       if (user) {
         const { uid } = user;
-        let collectionRef = db.collection("users");
-        collectionRef.onSnapshot((snapshot) => {
-          const documents = snapshot.docs.map((doc) => {
-            return {
+        db.collection("users")
+          .where("uid", "==", uid)
+          .get()
+          .then((snapshot) => {
+            const data = snapshot.docs.map((doc) => ({
               ...doc.data(),
-              id: doc.id,
-            };
+              idDoc: doc.id,
+            }));
+            if (!!data && data?.length > 0 && data[0].role == 1) {
+              setUser(data[0]);
+              history.push("/user/dashboard");
+            } else {
+              firebase.auth().signOut();
+              history.push("/login");
+              setLoading(false);
+            }
           });
-          const dataUser = documents.find((item) => {
-            if (item.uid === uid && item.role == 0) return item;
-          });
-          if (dataUser) {
-            setUser(dataUser);
-            setLoading(false);
-            history.push("/user/dashboard");
-            return;
-          }
-          return;
-        });
+
+        // let collectionRef = db.collection("users");
+        // collectionRef.onSnapshot((snapshot) => {
+        //   const documents = snapshot.docs.map((doc) => {
+        //     return {
+        //       ...doc.data(),
+        //       id: doc.id,
+        //     };
+        //   });
+        //   const dataUser = documents.find((item) => {
+        //     if (item.uid === uid && item.role == 0) return item;
+        //   });
+        //   if (dataUser && dataUser.role == 1) {
+        //     setUser(dataUser);
+        //     setLoading(false);
+        //     history.push("/user/dashboard");
+        //     return;
+        //   } else {
+        //     firebase.auth().signOut();
+        //     history.push("/login-user");
+        //     setLoading(false);
+        //     return;
+        //   }
+
+        // });
       }
     });
 

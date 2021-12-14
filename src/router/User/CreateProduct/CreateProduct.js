@@ -51,7 +51,6 @@ const CreateProduct = () => {
     statusProduct: "",
   });
 
-  console.log(user);
   const handleCreateProduct = () => {
     const validateInfoOther = handleErr(7);
     const validateKG = handleErr(6);
@@ -94,11 +93,9 @@ const CreateProduct = () => {
         peopleRating: [],
         idShop: user.uid,
       });
-      history.push("/user/dashboard");
+      history.push("/user/manage-product");
     }
   };
-
-  console.log(informationOther);
 
   const handleErr = (type) => {
     switch (type) {

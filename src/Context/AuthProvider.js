@@ -21,8 +21,11 @@ const AuthProvider = ({ children }) => {
             };
           });
           const dataUser = documents.filter((item) => item.uid === uid);
-          setUser(dataUser[0]);
-          return;
+
+          if (dataUser.role == 0) {
+            setUser(dataUser[0]);
+            return;
+          }
         });
       }
       setUser("");

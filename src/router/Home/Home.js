@@ -10,6 +10,7 @@ import Slider from "./../../components/Slider/Slider";
 const Home = () => {
   const [active, setActive] = useState(0);
   const [listProduct, setListProduct] = useState([]);
+  const [productSale, setProductSale] = useState([]);
   // get product
 
   React.useEffect(() => {
@@ -40,6 +41,22 @@ const Home = () => {
     }
   }, [active]);
 
+  React.useEffect(() => {
+    db.collection("Products")
+      .orderBy("infoBuyProduct.sale", "desc")
+      .where("status", "==", 0)
+      // .where("infoBuyProduct.sale", ">=", 10)
+      .limit(15)
+      .get()
+      .then((snapshot) => {
+        const data = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          idDoc: doc.id,
+        }));
+        setProductSale(data);
+      });
+  }, []);
+
   return (
     <div
       className="home"
@@ -51,7 +68,7 @@ const Home = () => {
       <Slider />
       <Menu />
       <Banner />
-      <FlashSale />
+      <FlashSale product={productSale} />
 
       <Container>
         <div className="row">

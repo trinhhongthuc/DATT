@@ -1,34 +1,32 @@
+// icon
+import EmailIcon from "@mui/icons-material/Email";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
+import LockIcon from "@mui/icons-material/Lock";
+import { db } from "firebase/config";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 // reactstrap components
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
-  FormGroup,
+  CardHeader,
+  Col,
+  Container,
   Form,
+  FormGroup,
   Input,
+  InputGroup,
   InputGroupAddon,
   InputGroupText,
-  InputGroup,
-  Container,
   Row,
-  Col,
 } from "reactstrap";
-
-import { addDocument, generateKeywords } from "../../firebase/services";
-// icon
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import GoogleIcon from "@mui/icons-material/Google";
-import { auth } from "../../firebase/config";
-import firebase from "../../firebase/config";
-import FacebookIcon from "@mui/icons-material/Facebook";
-
+import { ReactComponent as LoadingThreeDot } from "../../assets/Image/three-dots.svg";
 import Loading from "../../components/Loading/Loading";
 import { AuthContext } from "../../Context/AuthProvider";
-import { ReactComponent as LoadingThreeDot } from "../../assets/Image/three-dots.svg";
+import firebase, { auth } from "../../firebase/config";
+import { addDocument, generateKeywords } from "../../firebase/services";
 
 const fbProvider = new firebase.auth.FacebookAuthProvider();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -66,6 +64,7 @@ const Login = () => {
         dayOfBirth: "10/10/1980",
         gender: 0,
         address: "",
+        notification: [],
       });
     }
   };
@@ -76,7 +75,23 @@ const Login = () => {
       .auth()
       .signInWithEmailAndPassword(valueRegister.email, valueRegister.password)
       .then((res) => {
-        history.push("/");
+        db.collection("users")
+          .where("uid", "==", res.user.uid)
+          .get()
+          .then((snapshot) => {
+            const data = snapshot.docs.map((doc) => ({
+              ...doc.data(),
+              idDoc: doc.id,
+            }));
+            if (!!data && data?.length > 0 && data[0].role == 0) {
+              setUser(data[0]);
+              history.push("/");
+            } else {
+              firebase.auth().signOut();
+              history.push("/login");
+              setLoading(false);
+            }
+          });
       })
       .catch((err) => {
         console.log("err", err);

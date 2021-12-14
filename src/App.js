@@ -51,6 +51,15 @@ function App() {
               <Header2 title="Đăng ký" />
               <Register />
             </Route>
+            {/* shop */}
+            <Route exact path="/shop/:id">
+              <Header />
+              <Shop />
+            </Route>
+
+            <Route exact path="/account/profile">
+              <Profile />
+            </Route>
           </Switch>
         </AppProvider>
       </AuthProvider>
@@ -89,16 +98,6 @@ function App() {
           <Route exact path="/user/setting-shop">
             <MenuSidebar />
             <SettingShop />
-          </Route>
-
-          {/* shop */}
-          <Route exact path="/shop">
-            <Header />
-            <Shop />
-          </Route>
-
-          <Route exact path="/account/profile">
-            <Profile />
           </Route>
         </Switch>
       </UserProvider>

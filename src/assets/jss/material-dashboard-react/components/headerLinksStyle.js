@@ -1,9 +1,8 @@
 import {
-  defaultFont,
   dangerColor,
+  defaultFont,
   whiteColor,
 } from "assets/jss/material-dashboard-react.js";
-
 import dropdownStyle from "assets/jss/material-dashboard-react/dropdownStyle.js";
 
 const headerLinksStyle = (theme) => ({
@@ -72,7 +71,7 @@ const headerLinksStyle = (theme) => ({
     zIndex: "4",
   },
   notifications: {
-    zIndex: "4",
+    zIndex: "100",
     [theme.breakpoints.up("md")]: {
       position: "absolute",
       top: "2px",

@@ -44,6 +44,7 @@ const RegisterShop = () => {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((res) => {
+          console.log(res);
           if (res.additionalUserInfo?.isNewUser) {
             addDocument("users", {
               displayName: nameShop,
@@ -56,8 +57,9 @@ const RegisterShop = () => {
               gender: 0,
               address: "",
               role: 1,
+              notification: [],
             });
-            history.push("/");
+            history.push("/user/dashboard");
           }
         })
         .catch((err) => {
@@ -165,7 +167,7 @@ const RegisterShop = () => {
             className="animation a6"
             onClick={() => handleRegisterEmailAndPassword()}
           >
-            Đăng nhập
+            Đăng ký tài khoản
           </button>
         </form>
       </div>

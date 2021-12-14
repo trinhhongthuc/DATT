@@ -1,30 +1,34 @@
-import React from "react";
-import classNames from "classnames";
-// @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Divider from "@material-ui/core/Divider";
+import Grow from "@material-ui/core/Grow";
+import Hidden from "@material-ui/core/Hidden";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
-import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Hidden from "@material-ui/core/Hidden";
 import Poppers from "@material-ui/core/Popper";
-import Divider from "@material-ui/core/Divider";
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
+import Dashboard from "@material-ui/icons/Dashboard";
+import Notifications from "@material-ui/icons/Notifications";
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
-import Notifications from "@material-ui/icons/Notifications";
-import Dashboard from "@material-ui/icons/Dashboard";
 import Search from "@material-ui/icons/Search";
+import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
+import classNames from "classnames";
+import Button from "components/CustomButtons/Button.js";
 // core components
 import CustomInput from "components/CustomInput/CustomInput.js";
-import Button from "components/CustomButtons/Button.js";
-
-import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
-import firebase, { auth, db } from "firebase/config";
+import firebase, { db } from "firebase/config";
+import React from "react";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "./../../Context/UserProvider";
 const useStyles = makeStyles(styles);
 
 export default function AdminNavbarLinks() {
+  // context
+
+  const { user } = React.useContext(UserContext);
+  const [lengthNotification, setLengthNotification] = React.useState("");
   const history = useHistory();
   const classes = useStyles();
   const [openNotification, setOpenNotification] = React.useState(null);
@@ -48,6 +52,35 @@ export default function AdminNavbarLinks() {
   };
   const handleCloseProfile = () => {
     setOpenProfile(null);
+  };
+
+  React.useEffect(() => {
+    if (!!user) {
+      const length =
+        !!user && user.notification.length > 0
+          ? user.notification.filter((item) => item.status == "1")
+          : [];
+      setLengthNotification(length.length);
+    }
+  }, [user]);
+
+  const handleChangeStatusNotification = (id) => {
+    const updateUser = db.collection("users").doc(user.id);
+    const notificationData = user.notification.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          status: 0,
+        };
+      } else {
+        return item;
+      }
+    });
+    updateUser.update({
+      notification: notificationData,
+    });
+
+    setOpenNotification(null);
   };
   return (
     <div>
@@ -90,7 +123,7 @@ export default function AdminNavbarLinks() {
           className={classes.buttonLink}
         >
           <Notifications className={classes.icons} />
-          <span className={classes.notifications}>5</span>
+          <span className={classes.notifications}>{lengthNotification}</span>
           <Hidden mdUp implementation="css">
             <p onClick={handleCloseNotification} className={classes.linkText}>
               Notification
@@ -107,6 +140,9 @@ export default function AdminNavbarLinks() {
             " " +
             classes.popperNav
           }
+          style={{
+            zIndex: 100,
+          }}
         >
           {({ TransitionProps, placement }) => (
             <Grow
@@ -117,39 +153,26 @@ export default function AdminNavbarLinks() {
                   placement === "bottom" ? "center top" : "center bottom",
               }}
             >
-              <Paper>
+              <Paper style={{ zIndex: 100 }}>
                 <ClickAwayListener onClickAway={handleCloseNotification}>
-                  <MenuList role="menu">
-                    <MenuItem
-                      onClick={handleCloseNotification}
-                      className={classes.dropdownItem}
-                    >
-                      Mike John responded to your email
-                    </MenuItem>
-                    <MenuItem
-                      onClick={handleCloseNotification}
-                      className={classes.dropdownItem}
-                    >
-                      You have 5 new tasks
-                    </MenuItem>
-                    <MenuItem
-                      onClick={handleCloseNotification}
-                      className={classes.dropdownItem}
-                    >
-                      You{"'"}re now friend with Andrew
-                    </MenuItem>
-                    <MenuItem
-                      onClick={handleCloseNotification}
-                      className={classes.dropdownItem}
-                    >
-                      Another Notification
-                    </MenuItem>
-                    <MenuItem
-                      onClick={handleCloseNotification}
-                      className={classes.dropdownItem}
-                    >
-                      Another One
-                    </MenuItem>
+                  <MenuList role="menu" style={{ zIndex: 100 }}>
+                    {!!user && user.notification?.length > 0
+                      ? user.notification.map((item) => {
+                          return (
+                            <MenuItem
+                              onClick={() =>
+                                handleChangeStatusNotification(item.id)
+                              }
+                              className={classes.dropdownItem}
+                              key={item.id}
+                            >
+                              {item.description.length > 150
+                                ? item.description.slice(0, 150) + "..."
+                                : item.description}
+                            </MenuItem>
+                          );
+                        })
+                      : ""}
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
@@ -196,13 +219,9 @@ export default function AdminNavbarLinks() {
                 <ClickAwayListener onClickAway={handleCloseProfile}>
                   <MenuList role="menu">
                     <MenuItem
-                      onClick={handleCloseProfile}
-                      className={classes.dropdownItem}
-                    >
-                      Profile
-                    </MenuItem>
-                    <MenuItem
-                      onClick={handleCloseProfile}
+                      onClick={() => {
+                        history.push("/user/setting-shop");
+                      }}
                       className={classes.dropdownItem}
                     >
                       Settings
@@ -210,7 +229,6 @@ export default function AdminNavbarLinks() {
                     <Divider light />
                     <MenuItem
                       onClick={() => {
-                        console.log("asd");
                         firebase.auth().signOut();
                         history.push("/login");
                       }}

@@ -12,6 +12,7 @@
             .css-bf9wz-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
                 background-color: #f63 !important;
                 outline: none;
+                pointer-events: none;
             }
             .css-bf9wz-MuiButtonBase-root-MuiPaginationItem-root:focus {
                 outline: none;

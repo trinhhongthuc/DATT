@@ -1,12 +1,11 @@
-import React from "react";
-import Container from "@mui/material/Container";
-import flashSales from "../../assets/Image/flashSale.png";
-import Slider from "react-slick";
-import product from "../../assets/Image/product/prd1.jfif";
-import { Link } from "react-router-dom";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import Container from "@mui/material/Container";
+import React from "react";
+import { Link } from "react-router-dom";
+import Slider from "react-slick";
+import flashSales from "../../assets/Image/flashSale.png";
 
-const FlashSale = () => {
+const FlashSale = ({ product }) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -57,169 +56,38 @@ const FlashSale = () => {
         </div>
         <div className="row">
           <Slider {...settings}>
-            <div className="flash-sales-box">
-              <div className="box-product-sales">
-                <p className="box-product-sales-number">40%</p>
-                <p className="box-product-sales-text">Giảm</p>
-              </div>
-              <div className="flash-sales-box-img">
-                <img src={product} alt="" />
-              </div>
-              <p className="flash-sales-box-price">
-                <span>đ</span>89.000
-              </p>
-              <p className="flash-sales-box-progress">
-                <span>đã bán 10</span>
-                <div
-                  className="flash-sales-box-progress-background"
-                  style={{ width: "10%" }}
-                ></div>
-              </p>
-            </div>
-            <div className="flash-sales-box">
-              {" "}
-              <div className="box-product-sales">
-                <p className="box-product-sales-number">40%</p>
-                <p className="box-product-sales-text">Giảm</p>
-              </div>
-              <div className="flash-sales-box-img">
-                <img src={product} alt="" />
-              </div>
-              <p className="flash-sales-box-price">39.000</p>
-              <p className="flash-sales-box-progress">
-                <span>đã bán 10</span>
-                <div
-                  className="flash-sales-box-progress-background"
-                  style={{ width: "10%" }}
-                ></div>
-              </p>
-            </div>
-            <div className="flash-sales-box">
-              {" "}
-              <div className="box-product-sales">
-                <p className="box-product-sales-number">40%</p>
-                <p className="box-product-sales-text">Giảm</p>
-              </div>
-              <div className="flash-sales-box-img">
-                <img src={product} alt="" />
-              </div>
-              <p className="flash-sales-box-price">29.000</p>
-              <p className="flash-sales-box-progress">
-                <span>đã bán 10</span>
-                <div
-                  className="flash-sales-box-progress-background"
-                  style={{ width: "10%" }}
-                ></div>
-              </p>
-            </div>
-            <div className="flash-sales-box">
-              {" "}
-              <div className="box-product-sales">
-                <p className="box-product-sales-number">40%</p>
-                <p className="box-product-sales-text">Giảm</p>
-              </div>
-              <div className="flash-sales-box-img">
-                <img src={product} alt="" />
-              </div>
-              <p className="flash-sales-box-price">19.000</p>
-              <p className="flash-sales-box-progress">
-                <span>đã bán 10</span>
-                <div
-                  className="flash-sales-box-progress-background"
-                  style={{ width: "10%" }}
-                ></div>
-              </p>
-            </div>
-            <div className="flash-sales-box">
-              {" "}
-              <div className="box-product-sales">
-                <p className="box-product-sales-number">40%</p>
-                <p className="box-product-sales-text">Giảm</p>
-              </div>
-              <div className="flash-sales-box-img">
-                <img src={product} alt="" />
-              </div>
-              <p className="flash-sales-box-price">49.000</p>
-              <p className="flash-sales-box-progress">
-                <span>đã bán 10</span>
-                <div
-                  className="flash-sales-box-progress-background"
-                  style={{ width: "10%" }}
-                ></div>
-              </p>
-            </div>
-            <div className="flash-sales-box">
-              {" "}
-              <div className="box-product-sales">
-                <p className="box-product-sales-number">40%</p>
-                <p className="box-product-sales-text">Giảm</p>
-              </div>
-              <div className="flash-sales-box-img">
-                <img src={product} alt="" />
-              </div>
-              <p className="flash-sales-box-price">59.000</p>
-              <p className="flash-sales-box-progress">
-                <span>đã bán 10</span>
-                <div
-                  className="flash-sales-box-progress-background"
-                  style={{ width: "10%" }}
-                ></div>
-              </p>
-            </div>
-            <div className="flash-sales-box">
-              {" "}
-              <div className="box-product-sales">
-                <p className="box-product-sales-number">40%</p>
-                <p className="box-product-sales-text">Giảm</p>
-              </div>
-              <div className="flash-sales-box-img">
-                <img src={product} alt="" />
-              </div>
-              <p className="flash-sales-box-price">69.000</p>
-              <p className="flash-sales-box-progress">
-                <span>đã bán 10</span>
-                <div
-                  className="flash-sales-box-progress-background"
-                  style={{ width: "10%" }}
-                ></div>
-              </p>
-            </div>
-            <div className="flash-sales-box">
-              {" "}
-              <div className="box-product-sales">
-                <p className="box-product-sales-number">40%</p>
-                <p className="box-product-sales-text">Giảm</p>
-              </div>
-              <div className="flash-sales-box-img">
-                <img src={product} alt="" />
-              </div>
-              <p className="flash-sales-box-price">79.000</p>
-              <p className="flash-sales-box-progress">
-                <span>đã bán 10</span>
-                <div
-                  className="flash-sales-box-progress-background"
-                  style={{ width: "10%" }}
-                ></div>
-              </p>
-            </div>
-            <div className="flash-sales-box">
-              {" "}
-              <div className="box-product-sales">
-                <p className="box-product-sales-number">40%</p>
-                <p className="box-product-sales-text">Giảm</p>
-              </div>
-              <div className="flash-sales-box-img">
-                <img src={product} alt="" />
-              </div>
-              <p className="flash-sales-box-price">89.000</p>
-              <p className="flash-sales-box-progress">
-                <span>đã bán 10</span>
-                <div
-                  className="flash-sales-box-progress-background"
-                  style={{ width: "10%" }}
-                ></div>
-              </p>
-            </div>
+            {!!product &&
+              product?.length > 0 &&
+              product.map((item) => {
+                let width =
+                  (item.productBuy / item.infoBuyProduct.countProduct) * 100;
+                return (
+                  <div className="flash-sales-box">
+                    <div className="box-product-sales">
+                      <p className="box-product-sales-number">
+                        {item.infoBuyProduct.sale} %
+                      </p>
+                      <p className="box-product-sales-text">Giảm</p>
+                    </div>
+                    <div className="flash-sales-box-img">
+                      <img src={item.avatarProduct} alt="avatar" />
+                    </div>
+                    <p className="flash-sales-box-price">
+                      {new Intl.NumberFormat("de-DE", {
+                        style: "currency",
+                        currency: "VND",
+                      }).format(item.infoBuyProduct.price)}
+                    </p>
+                    <p className="flash-sales-box-progress">
+                      <span>đã bán {item.productBuy}</span>
+                      <div
+                        className="flash-sales-box-progress-background"
+                        style={{ width: width }}
+                      ></div>
+                    </p>
+                  </div>
+                );
+              })}
           </Slider>
         </div>
       </Container>

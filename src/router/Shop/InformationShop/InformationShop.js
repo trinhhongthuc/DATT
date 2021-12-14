@@ -1,13 +1,11 @@
-import React from "react";
-import Container from "@mui/material/Container";
-import avatar from "../../../assets/Image/avatar.png";
-
-// icons for
-
-import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
-import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
-const InformationShop = () => {
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
+// icons for
+import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
+import Container from "@mui/material/Container";
+import moment from "moment";
+import React from "react";
+const InformationShop = ({ shop, id, lengthProduct }) => {
   return (
     <>
       <div className="info-shop" style={{ background: "#fff" }}>
@@ -17,10 +15,10 @@ const InformationShop = () => {
               <div className="info-shop-wrapper">
                 <div className="info-shop-wrapper-avatar">
                   <div className="img">
-                    <img src={avatar} alt="" />
+                    <img src={!!shop && shop.photoURL} alt="" />
                   </div>
                   <div className="content">
-                    <h5>shopbanquanao giair</h5>
+                    <h5>{!!shop && shop.displayName}</h5>
 
                     <p>Online 9 giờ trước</p>
                   </div>
@@ -33,7 +31,7 @@ const InformationShop = () => {
                       Sản phẩm:
                     </h6>
 
-                    <p>80</p>
+                    <p>{lengthProduct}</p>
                   </li>
                   <li>
                     <h6>
@@ -49,7 +47,12 @@ const InformationShop = () => {
                       Tham gia:
                     </h6>
 
-                    <p>4 tháng trước</p>
+                    <p>
+                      {" "}
+                      {moment(
+                        new Date(!!shop && shop.createdAt?.seconds * 1000)
+                      ).fromNow()}{" "}
+                    </p>
                   </li>
                 </ul>
               </div>
@@ -77,13 +80,9 @@ const InformationShop = () => {
       <div className="info-description">
         <Container>
           <div className="row">
-            <div className="info-description-wrapper">
+            <div className="info-description-wrapper" style={{ width: "100%" }}>
               <h5 className="heading">THÔNG TIN SHOP</h5>
-              <p>
-                do tình hình dịch bệnh nên một số khu vực bị phong toả. dẫn đến
-                việc đơn hàng nhập kho và giao đến khách bị chậm trễ. mong quý
-                khách thông cảm ạ
-              </p>
+              <p>{!!shop && shop.description} </p>
             </div>
           </div>
         </Container>
